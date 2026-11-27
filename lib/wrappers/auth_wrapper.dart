@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../screens/login_screen.dart';
+import '../screens/user_info_screen.dart';
 
 class AuthWrapper extends StatelessWidget {
   const AuthWrapper({super.key});
@@ -15,6 +16,11 @@ class AuthWrapper extends StatelessWidget {
             body: Center(child: CircularProgressIndicator()),
           );
         }
+
+        if (snapshot.hasData) {
+          return UserInfoScreen(user: snapshot.data!);
+        }
+
         return const LoginScreen();
       },
     );
